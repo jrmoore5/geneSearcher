@@ -21,8 +21,8 @@
                         while($row = $result->fetch(PDO::FETCH_ASSOC)){
                             $genes[] = new Gene($row['GeneID'], $row['Name']);
                         }
-                        
-                        echo json_encode($genes, JSON_PRETTY_PRINT);
+                        http_response_code(200);
+                        print json_encode($genes, JSON_PRETTY_PRINT);
                     }
                     else{
                         throw new Exception('searchGene query missing "gene" query string');
@@ -46,7 +46,8 @@
                         }
                         
                         if($success){
-                            echo json_encode($variants, JSON_PRETTY_PRINT);
+                            http_response_code(200);
+                            print json_encode($variants, JSON_PRETTY_PRINT);
                         }
                         else{
                             throw new Exception('Gene does not exist in database');
